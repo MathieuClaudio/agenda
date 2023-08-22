@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda</title>
+    <link rel="stylesheet" href="src/css/bootstrap.css">
+</head>
+
+<body>
+    <main class="container-fluid">
+        <header>
+            <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="./">Agend<span class="badge bg-light rouded-pill"
+                            style="margin: 0px; padding: 2px;">App</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarColor01">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="./">Inicio
+                                    <span class="visually-hidden">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./features.html">Caracteristicas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./contact.html">Contacto</a>
+                            </li>
+                        </ul>
+                        <form class="d-flex">
+                            <input class="form-control me-sm-2" type="search" placeholder="Buscar">
+                            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <!-- ALERTAS - MENSAJES {Solo en el INDEX.HTML} alert-warning" (naranja), alert-danger (rojo), alert-success (verde),
+                alert-info (celeste), alert-primary (azul), alert-secondary (gris oscuro), alert-light (gris claro)-->
+            <div class="bs-docs-section">
+                <div class="row mt-2">
+                    <div class="col-lg-12">
+                        <div class="bs-component">
+                            <div class="alert alert-dismissible alert-warning">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                <h4 class="alert-heading">Warning!</h4>
+                                <p class="mb-0">Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra
+                                    augue. Praesent commodo cursus magna, <a href="#" class="alert-link">vel scelerisque nisl
+                                        consectetur et</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <!-- FORMULARIO --->
+                    <div class="col-lg-4 bg-light mb-3">
+                        <h3>Formulario</h3>
+                        <form>
+                            <fieldset>
+                                <legend>Agregar contacto</legend>
+                                <div class="form-group">
+                                    <label for="contact-name" class="form-label mt-4">Nombre</label>
+                                    <input type="text" class="form-control" id="contact-name"
+                                        aria-describedby="namelHelp" placeholder="Escriba su nombre">
+                                    <small id="emailHelp" class="form-text text-muted">En lo posible, escriba su nombre
+                                        completo</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-email" class="form-label mt-4">Email</label>
+                                    <input type="email" class="form-control" id="contact-email"
+                                        aria-describedby="emailHelp" placeholder="Escriba su correo">
+                                    <small id="emailHelp" class="form-text text-muted">No comparta su correo si no está
+                                        seguro.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-description" class="form-label mt-4">Notas</label>
+                                    <textarea class="form-control" id="contact-description" rows="3"></textarea>
+                                </div>
+
+                                <fieldset class="form-group">
+                                    <legend class="mt-4">Tipo de contacto</legend>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="contact-family">
+                                        <label class="form-check-label" for="contact-tipo">
+                                            Familiar
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="contact-friend"
+                                            checked="">
+                                        <label class="form-check-label" for="contact-friend">
+                                            Amigo
+                                        </label>
+                                    </div>
+                                </fieldset>
+                                <br>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </fieldset>
+                        </form>
+                    </div>
+                    
+                    <!-- AGENDA -->
+                    <div class="col-lg-8 bg-secondary">
+                        <h3>Agenda</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="mt-4">
+            <a class="d-inline-flex align-items-center mb-2 text-body-emphasis text-decoration-none" href="./"
+                aria-label="Bootstrap">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" class="d-block me-2" viewBox="0 0 118 94"
+                    role="img">
+                    <title>Agendapp</title>
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z"
+                        fill="currentColor"></path>
+                </svg>
+                <span class="fs-5">Claudio Mathieu</span>
+            </a>
+        </footer>
+    </main>
+
+    <script src="src/js/agenda.js"></script>
+    <script src="https://bootswatch.com/_vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
