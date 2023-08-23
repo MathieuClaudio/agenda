@@ -64,7 +64,7 @@
                     <!-- FORMULARIO --->
                     <div class="col-lg-4 bg-light mb-3">
                         <h3>Formulario</h3>
-                        <form>
+                        <form id="contact-form">
                             <fieldset>
                                 <legend>Agregar contacto</legend>
                                 <div class="form-group">
@@ -76,7 +76,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="contact-email" class="form-label mt-4">Email</label>
-                                    <input type="email" class="form-control" id="contact-email"
+                                    <input type="email" class="form-control" id="contact-email" value="@gmail.com"
                                         aria-describedby="emailHelp" placeholder="Escriba su correo">
                                     <small id="emailHelp" class="form-text text-muted">No comparta su correo si no está
                                         seguro.</small>
@@ -85,17 +85,16 @@
                                     <label for="contact-description" class="form-label mt-4">Notas</label>
                                     <textarea class="form-control" id="contact-description" rows="3"></textarea>
                                 </div>
-
                                 <fieldset class="form-group">
                                     <legend class="mt-4">Tipo de contacto</legend>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="contact-family">
-                                        <label class="form-check-label" for="contact-tipo">
+                                        <input class="form-check-input" type="checkbox" value="Familiar" id="contact-family">
+                                        <label class="form-check-label" for="contact-family">
                                             Familiar
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="contact-friend"
+                                        <input class="form-check-input" type="checkbox" value="Amigo" id="contact-friend"
                                             checked="">
                                         <label class="form-check-label" for="contact-friend">
                                             Amigo
@@ -111,6 +110,23 @@
                     <!-- AGENDA -->
                     <div class="col-lg-8 bg-secondary">
                         <h3>Agenda</h3>
+                        <div id="agenda">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <th>Nombre</th>
+                                        <th>Email</th>
+                                        <th>Descripción</th>
+                                        <th>Categoría</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="lista">
+
+                                </tbody>                
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
