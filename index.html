@@ -58,16 +58,17 @@
                     <!-- FORMULARIO --->
                     <div class="col-lg-4 bg-light mb-3">
                         <form id="contact-form">
+                            <input type="hidden" id="contact-id" name="contact-id" value="">
                             <fieldset>
                                 <legend>Agregar/Modificar Contacto</legend>
                                 <div class="form-group">
                                     <label for="contact-name" class="form-label mt-4">Nombre</label>
-                                    <input type="text" class="form-control" id="contact-name"
+                                    <input type="text" class="form-control" id="contact-name" value="Claudio"
                                         aria-describedby="namelHelp" placeholder="Escriba el nombre completo">
                                 </div>
                                 <div class="form-group">
                                     <label for="contact-email" class="form-label mt-4">Email</label>
-                                    <input type="email" class="form-control" id="contact-email" value="@gmail.com"
+                                    <input type="email" class="form-control" id="contact-email" value="alejandro@gmail.com"
                                         aria-describedby="emailHelp" placeholder="Escriba el correo">
                                     <!-- <small id="emailHelp" class="form-text text-muted">No comparta su correo si no está
                                         seguro.</small> -->
@@ -99,6 +100,8 @@
                                 </fieldset>
                                 <br>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
+                                <button type="button" id="editar" class="btn btn-primary">Editar</button>
+                                <button type="button" id="cancelar" class="btn btn-primary">Cancelar</button>
                             </fieldset>
                         </form>
                     </div>
@@ -106,6 +109,7 @@
                     <!-- AGENDA -->
                     <div class="col-lg-8 bg-secondary">
                         <h3>Agenda</h3>
+                        <button type="button" id="eliminarTodo">Eliminar Todo</button>
                         <div class="table-responsive" id="agenda">
                             <table class="table table-striped">
                                 <thead>
@@ -116,7 +120,7 @@
                                         <th>Celular</th>
                                         <th>Descripción</th>
                                         <th>Categoría</th>
-                                        <th>Acciones</th>
+                                        <th colspan="2">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody id="lista">
@@ -142,7 +146,7 @@
         </footer>
     </main>
 
-    <script src="src/js/test.js"></script>
+    <script src="src/js/agenda.js"></script>
     <script src="https://bootswatch.com/_vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
