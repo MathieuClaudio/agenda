@@ -2,7 +2,6 @@
 
 // Objeto Persona para los contactos
 class Persona{
-
     constructor(id, name, email, celphone, description, type){
         this.id = id;
         this.name = name;
@@ -11,6 +10,7 @@ class Persona{
         this.description = description;
         this.type = type;
     }
+    
 }
 
 // Función para verificar si el localStorage está disponible
@@ -53,13 +53,15 @@ function agregarPersona(id, name, email, celphone, description, type) {
 
 
 function limpiarLocalStoragePersonas() {
-    localStorage.removeItem('personas');
-    //console.log('El localStorage de personas ha sido limpiado.');
+
+    (window.confirm('¿Está seguro de eliminar todos los datos?')) ? localStorage.removeItem('personas') : null;
+
 }
 
 
 function eliminaContacto(){
     // Obtener los datos del localStorage
+    
 
 }
 
@@ -92,6 +94,7 @@ window.addEventListener("load", function(){
         const agenda = document.querySelector('#lista');
         agenda.innerHTML = "";
         mostrarAgenda(agenda, listadPersonas);
+        
 
         botonesBorrar = document.querySelectorAll('.borrar');
         // Agrega un evento click a cada botón
@@ -102,17 +105,22 @@ window.addEventListener("load", function(){
                 // Obtén los datos del localStorage
                 const datosLocalStorage = JSON.parse(localStorage.getItem('personas'));
                 if (Array.isArray(datosLocalStorage)) {
-                    console.log(datosLocalStorage);
-                    // Filtrar los elementos para eliminar el elemento con "id": 2
-                    const datosFiltrados = datosLocalStorage.filter(item => item.id != idToDelete);
-                    console.log(datosFiltrados);
-                
-                    // Actualizar el localStorage con los datos filtrados
-                    localStorage.setItem('personas', JSON.stringify(datosFiltrados));
-                
-                    console.log(`Dato con ID ${idToDelete} ha sido eliminado del localStorage.`);
-                    // Recarga la página para reflejar los cambios
-                    location.reload();
+
+                    const itemBorrar = idToDelete - 1;
+                    if (window.confirm(`¿Esta seguro de borrar el contacto ${datosLocalStorage[itemBorrar].name}?`)){
+                        //console.log(datosLocalStorage);
+                        // Filtrar los elementos para eliminar el elemento por "id"
+                        const datosFiltrados = datosLocalStorage.filter(item => item.id != idToDelete);
+                        //console.log(datosFiltrados);
+                    
+                        // Actualizar el localStorage con los datos filtrados
+                        localStorage.setItem('personas', JSON.stringify(datosFiltrados));
+                    
+                        //console.log(`Dato con ID ${idToDelete} ha sido eliminado del localStorage.`);
+                        // Recarga la página para reflejar los cambios
+                        location.reload();
+                    }
+
                 } else {
                     console.log('Los datos no están en un formato válido.');
                 }
@@ -122,7 +130,6 @@ window.addEventListener("load", function(){
 
 
         botonesEditar = document.querySelectorAll('.editar');
-        let formulario;
         // Agrega un evento click a cada botón
         botonesEditar.forEach(boton => {
             boton.addEventListener('click', function() {
@@ -130,6 +137,11 @@ window.addEventListener("load", function(){
                 // Obtén los datos del localStorage
                 const datosLocalStorage = JSON.parse(localStorage.getItem('personas'));
                 if (Array.isArray(datosLocalStorage)) {
+
+
+                    document.getElementById('btnEditar').classList.remove('visually-hidden');
+                    document.getElementById('btnGuardar').classList.add('visually-hidden');
+
                     //console.log(datosLocalStorage);
                     const datosFiltrados = datosLocalStorage.filter(item => item.id == idToEdit);
                     //console.log(`Dato con ID ${idToEdit}:`);
@@ -162,7 +174,7 @@ window.addEventListener("load", function(){
 
 
                     // Obtener nuevos datos desde el formulario
-                    document.getElementById('editar').addEventListener('click', function () {
+                    document.getElementById('btnEditar').addEventListener('click', function () {
 
                         datosFiltrados[0].name = document.getElementById('contact-name').value;
                         datosFiltrados[0].email = document.getElementById('contact-email').value;
@@ -198,6 +210,130 @@ window.addEventListener("load", function(){
         
 
 })
+
+
+
+
+// Evento inicial para cargar la agenda de personas
+// window.addEventListener("load", function(){
+//     const listadPersonas = obtenerPersonas();
+//     const agenda = document.querySelector('#lista');
+//     agenda.innerHTML = "";
+//     const itemsPerPage = 2;
+//     let currentPage = 1;
+
+//     function showPage(pageNumber) {
+//         agenda.innerHTML = '';
+//         const startIndex = (pageNumber - 1) * itemsPerPage;
+//         const endIndex = startIndex + itemsPerPage;
+
+//         for (let i = startIndex; i < endIndex && i < listadPersonas.length; i++) {
+//             const element = listadPersonas[i];
+//             const divItem = document.createElement("tr");
+//             divItem.innerHTML = `
+//                 <th scope="row">${element.id}</th>
+//                 <td>${element.name}</td>
+//                 <td>${element.email}</td>
+//                 <td>${element.celphone}</td>
+//                 <td>${element.description}</td>
+//                 <td>${element.type}</td>
+//                 <td><button type="button" id="${element.id}" class="btn btn-danger bt-sm borrar">Borrar</button></td>
+//                 <td><button type="button" id="${element.id}" class="btn btn-info bt-sm editar">Editar</button></td>
+//             `;
+//             agenda.appendChild(divItem);
+//         }
+//     }
+
+//     // function updatePaginator() {
+//     //     const paginador = document.getElementById('paginador');
+//     //     paginador.innerHTML = '';
+
+//     //     const numPages = Math.ceil(listadPersonas.length / itemsPerPage);
+
+//     //     for (let i = 1; i <= numPages; i++) {
+//     //         const pageLink = document.createElement('button');
+//     //         pageLink.classList.add('btn', 'btn-secondary', 'mx-1');
+//     //         pageLink.textContent = i;
+
+//     //         pageLink.addEventListener('click', function () {
+//     //             currentPage = i;
+//     //             showPage(currentPage);
+//     //             updatePaginator();
+//     //         });
+
+//     //         paginador.appendChild(pageLink);
+//     //     }
+//     // }
+
+//     function updatePaginator() {
+//         const paginador = document.getElementById('paginador');
+//         paginador.innerHTML = '';
+    
+//         const numPages = Math.ceil(listadPersonas.length / itemsPerPage);
+    
+//         const nav = document.createElement('nav');
+//         nav.setAttribute('aria-label', 'Page navigation example');
+//         paginador.appendChild(nav);
+    
+//         const ul = document.createElement('ul');
+//         ul.classList.add('pagination');
+//         nav.appendChild(ul);
+    
+//         const prevLi = document.createElement('li');
+//         prevLi.classList.add('page-item');
+//         ul.appendChild(prevLi);
+    
+//         const prevLink = document.createElement('a');
+//         prevLink.classList.add('page-link');
+//         prevLink.href = '#';
+//         prevLink.setAttribute('aria-label', 'Previous');
+//         prevLi.appendChild(prevLink);
+    
+//         const prevSpan = document.createElement('span');
+//         prevSpan.setAttribute('aria-hidden', 'true');
+//         prevSpan.innerHTML = '&laquo;';
+//         prevLink.appendChild(prevSpan);
+    
+//         for (let i = 1; i <= numPages; i++) {
+//             const pageLi = document.createElement('li');
+//             pageLi.classList.add('page-item');
+//             ul.appendChild(pageLi);
+    
+//             const pageLink = document.createElement('a');
+//             pageLink.classList.add('page-link');
+//             pageLink.href = '#';
+//             pageLink.textContent = i;
+    
+//             pageLink.addEventListener('click', function () {
+//                 currentPage = i;
+//                 showPage(currentPage);
+//                 updatePaginator();
+//             });
+    
+//             pageLi.appendChild(pageLink);
+//         }
+    
+//         const nextLi = document.createElement('li');
+//         nextLi.classList.add('page-item');
+//         ul.appendChild(nextLi);
+    
+//         const nextLink = document.createElement('a');
+//         nextLink.classList.add('page-link');
+//         nextLink.href = '#';
+//         nextLink.setAttribute('aria-label', 'Next');
+//         nextLi.appendChild(nextLink);
+    
+//         const nextSpan = document.createElement('span');
+//         nextSpan.setAttribute('aria-hidden', 'true');
+//         nextSpan.innerHTML = '&raquo;';
+//         nextLink.appendChild(nextSpan);
+//     }
+    
+//     showPage(currentPage);
+//     updatePaginator();
+// });
+
+
 
 
 
@@ -273,7 +409,6 @@ if(localStorageDisponible()){
 
 
     document.getElementById('eliminarTodo').addEventListener('click', function (e) {
-        alert("haciendo click");
         //console.log("haciendo click");
         limpiarLocalStoragePersonas();
         location.reload();
@@ -290,6 +425,10 @@ if(localStorageDisponible()){
 
 
 document.getElementById('cancelar').addEventListener('click', function () {
+
+    document.getElementById('btnGuardar').classList.remove('visually-hidden');
+    document.getElementById('btnEditar').classList.add('visually-hidden');
+
     document.getElementById('contact-id').value = "";
     document.getElementById('contact-name').value = "";
     document.getElementById('contact-email').value = "";
